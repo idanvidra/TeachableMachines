@@ -2,7 +2,9 @@ import cv2
 import numpy as np
 from PIL import Image, ImageOps
 import tensorflow.keras
-import 
+from butter.mas.api import ClientFactory
+
+# Connect to robot
 
 #Load the saved model
 model = tensorflow.keras.models.load_model("D:\\Progrmming\\Milab\\Projects\\Teachable Machines\\Pikaboo\\Keras\\keras_model.h5")
