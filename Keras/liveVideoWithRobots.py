@@ -3,8 +3,12 @@ import numpy as np
 from PIL import Image, ImageOps
 import tensorflow.keras
 from butter.mas.api import ClientFactory
+import time
 
 # Connect to robot
+ip = '0.0.0.0'
+butterTcpClient = ClientFactory().getClient(ip, protocol='tcp')
+
 
 #Load the saved model
 model = tensorflow.keras.models.load_model("D:\\Progrmming\\Milab\\Projects\\Teachable Machines\\Pikaboo\\Keras\\keras_model.h5")
@@ -41,7 +45,9 @@ while True:
         #if prediction is 0, which means I am missing on the image, then show the frame in gray color.
         if prediction < 0.5:
                 
+                butterTcpClient.playAnimation("Nod_45")
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+                time.sleep(3)
                 # Closed
         else:
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
